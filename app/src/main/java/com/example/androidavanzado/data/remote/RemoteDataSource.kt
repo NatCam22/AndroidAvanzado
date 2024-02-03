@@ -19,6 +19,9 @@ class RemoteDataSource {
         .baseUrl("https://dragonball.keepcoding.education/")
         .build()
     private var api = retrofit.create(DragonBallAPI::class.java)
+    fun setApi(api: DragonBallAPI){
+        this.api = api
+    }
     suspend fun getHeroList(token: String): List<Hero>{
         val bearer = "Bearer $token"
         return api.getHeros(HeroRequest(), bearer)
