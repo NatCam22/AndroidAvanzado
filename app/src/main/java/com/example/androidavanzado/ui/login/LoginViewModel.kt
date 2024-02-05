@@ -3,19 +3,18 @@ package com.example.androidavanzado.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidavanzado.data.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.Credentials
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import javax.inject.Inject
 
-class LoginViewModel: ViewModel(){
-    private val repository = Repository()
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val repository: Repository): ViewModel(){
+
     private val _uiState = MutableStateFlow<State>(State.Idle())
     val uiState: StateFlow<State> = _uiState
 

@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,6 +43,11 @@ dependencies {
     implementation("androidx.room:room-runtime:2.5.0")
     annotationProcessor("androidx.room:room-compiler:2.5.0")
     kapt("androidx.room:room-compiler:2.5.0")
+    //Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2")
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

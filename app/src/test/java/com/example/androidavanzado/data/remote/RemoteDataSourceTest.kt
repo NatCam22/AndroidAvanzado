@@ -16,7 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RemoteDataSourceTest{
     //SUT O UUT (Subject under testing/ Unit under testing)
-    private val remoteDataSource = RemoteDataSource()
+    private lateinit var  remoteDataSource: RemoteDataSource
     private lateinit var api: DragonBallAPI
     //Dependencias
 
@@ -36,7 +36,7 @@ class RemoteDataSourceTest{
     @Test
     fun `WHEN getHeros THEN success list`() = runTest{
         //Given
-        remoteDataSource.setApi(api)
+        remoteDataSource = RemoteDataSource(api)
         //When
         val heroList = remoteDataSource.getHeroList("")
         //then

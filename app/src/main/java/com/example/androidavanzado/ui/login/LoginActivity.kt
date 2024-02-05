@@ -9,11 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.androidavanzado.data.Repository
 import com.example.androidavanzado.databinding.ActivityLoginBinding
 import com.example.androidavanzado.ui.heroList.HeroListActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginActivity: AppCompatActivity() {
-    private val repository = Repository()
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
 

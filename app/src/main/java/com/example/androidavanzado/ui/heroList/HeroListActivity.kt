@@ -10,9 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidavanzado.databinding.ActivityHeroListBinding
 import com.example.androidavanzado.domain.Hero
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
+@AndroidEntryPoint
 class HeroListActivity : AppCompatActivity() {
     companion object{
         val TOKEN = "TOKEN"
@@ -30,7 +31,6 @@ class HeroListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHeroListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val token = intent.getStringExtra(TOKEN)
         token?.let{
             Log.d("AQUI", token)
