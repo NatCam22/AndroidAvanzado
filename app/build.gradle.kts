@@ -71,7 +71,8 @@ dependencies {
     testImplementation("org.testng:testng:6.9.6")
     testImplementation("android.arch.core:core-testing:1.1.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-
+    testImplementation("io.mockk:mockk:1.13.9")
+    testImplementation("com.google.truth:truth:1.0")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

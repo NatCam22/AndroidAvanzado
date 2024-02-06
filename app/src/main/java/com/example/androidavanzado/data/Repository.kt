@@ -2,6 +2,7 @@ package com.example.androidavanzado.data
 
 import android.content.Context
 import com.example.androidavanzado.data.local.LocalDataSource
+import com.example.androidavanzado.data.local.LocalDataSourceInterface
 import com.example.androidavanzado.data.mappers.LocalToUIMapper
 import com.example.androidavanzado.data.mappers.RemoteToLocalMapper
 import com.example.androidavanzado.data.remote.DragonBallAPI
@@ -15,7 +16,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Inject
 
 class Repository @Inject constructor(
-    private val localDataSource: LocalDataSource,
+    private val localDataSource: LocalDataSourceInterface,
     private val remoteDataSource: RemoteDataSource,
     private val localToUIMapper: LocalToUIMapper,
     private val remoteToLocalMapper: RemoteToLocalMapper) {
