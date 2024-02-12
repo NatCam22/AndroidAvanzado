@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.androidavanzado.ui.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_heroListFragment"
+            app:destination="@id/heroListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/heroListFragment"
+        android:name="com.example.androidavanzado.ui.heroList.HeroListFragment"
+        tools:layout="@layout/fragment_hero_list">
+        <action
+            android:id="@+id/action_heroListFragment_to_heroDetailFragment"
+            app:destination="@id/heroDetailFragment" />
+        <argument android:name="token" app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/heroDetailFragment"
+        android:name="com.example.androidavanzado.ui.heroDetail.HeroDetailFragment"
+        tools:layout="@layout/fragment_hero_detail">
+        <argument android:name="hero_name" app:argType="string"/>
+        <argument android:name="token" app:argType="string"/>
+
+    </fragment>
+</navigation>

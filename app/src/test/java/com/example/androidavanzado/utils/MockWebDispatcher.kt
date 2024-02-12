@@ -7,9 +7,18 @@ import okhttp3.mockwebserver.RecordedRequest
 import java.io.File
 import java.net.HttpURLConnection
 
-class MockWebDispatcher: Dispatcher() {
+class MockWebDispatcher(): Dispatcher() {
     override fun dispatch(request: RecordedRequest): MockResponse {
-        return MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(getJson("json/heros.json"))
+        val endpoint = request.path?: ""
+        println(endpoint)
+        when(endpoint) {
+            "/api/heros/all" -> {return MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(getJson("json/heros.json"))}
+            "/api/heros/locations" -> {return MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(getJson("json/locations.json"))}
+            "/hero/api/heros/all" -> {return MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(getJson("json/hero.json"))}
+            else -> {
+                return MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST)
+            }
+        }
     }
 }
 

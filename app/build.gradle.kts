@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -65,6 +67,9 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
 
     implementation("com.github.bumptech.glide:glide:4.14.2")
+
+    //Mapas
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     testImplementation("junit:junit:4.13.2")

@@ -11,4 +11,13 @@ interface HeroDAO {
     fun getAll(): List<HeroLocal>
     @Insert
     fun insertAll(heros: List<HeroLocal>)
+
+    @Query("UPDATE heros SET favorite = :fav WHERE id = :heroId")
+    fun setFavorite(fav: Boolean, heroId: String )
+
+    @Query("SELECT * FROM heros WHERE name = :heroName LIMIT 1")
+    fun getHero(heroName: String): HeroLocal
+
+    @Query("SELECT favorite FROM heros WHERE id = :heroId")
+    fun getFavorite(heroId: String): Boolean
 }

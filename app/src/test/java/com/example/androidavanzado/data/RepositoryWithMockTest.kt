@@ -3,6 +3,7 @@ package com.example.androidavanzado.data
 import com.example.androidavanzado.data.local.LocalDataSource
 import com.example.androidavanzado.data.mappers.LocalToUIMapper
 import com.example.androidavanzado.data.mappers.RemoteToLocalMapper
+import com.example.androidavanzado.data.mappers.RemoteToUILocationMapper
 import com.example.androidavanzado.data.remote.RemoteDataSource
 import com.example.androidavanzado.utils.generateLocalHeros
 import com.example.androidavanzado.utils.generateRemoteHeros
@@ -24,10 +25,11 @@ class RepositoryWithMockTest {
     private val remoteDataSource: RemoteDataSource = mockk()
     private val localToUIMapper: LocalToUIMapper = LocalToUIMapper()
     private val remoteToLocalMapper: RemoteToLocalMapper = RemoteToLocalMapper()
+    private val remoteToUILocationMapper: RemoteToUILocationMapper = RemoteToUILocationMapper()
 
     @Before
     fun setUp(){
-        repository = Repository(localDataSource, remoteDataSource, localToUIMapper, remoteToLocalMapper)
+        repository = Repository(localDataSource, remoteDataSource, localToUIMapper, remoteToLocalMapper, remoteToUILocationMapper)
     }
 
     @Test
@@ -54,4 +56,13 @@ class RepositoryWithMockTest {
         verify(exactly = 1) { localDataSource.insertHeros(remoteToLocalMapper.map(remoteHeros)) }
         coVerify(exactly = 1) { remoteDataSource.getHeroList("") }
     }
+
+    @Test
+    fun `WHEN getToken THEN success token`()= runTest{
+        coEvery { remoteDataSource.getToken("") } returns "TOKEN"
+
+        val actual = repository.getToken("")
+        Assert.assertEquals("TOKEN", actual)
+    }
+
 }

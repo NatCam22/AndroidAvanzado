@@ -6,6 +6,5 @@ import androidx.room.PrimaryKey
 
 data class Hero(
     val name: String,
-    val description: String,
     val photo: String,
     val favorite: Boolean)

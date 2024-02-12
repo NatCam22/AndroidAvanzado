@@ -1,6 +1,5 @@
 package com.example.androidavanzado.ui.heroList
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidavanzado.data.Repository
@@ -14,7 +13,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class HeroListViewModel @Inject constructor(val repository: Repository): ViewModel(){
+class HeroListViewModel @Inject constructor(val repository: Repository): ViewModel() {
 
     private val _uiState = MutableStateFlow<State>(State.Idle())
     val uiState: StateFlow<State> = _uiState

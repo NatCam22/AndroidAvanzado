@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8FFFA000"
+    tools:context=".ui.heroList.HeroListFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListHeros"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="15"
+        tools:listitem="@layout/item_hero" />
+
+</FrameLayout>

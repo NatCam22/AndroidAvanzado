@@ -17,7 +17,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class RemoteDataSourceTest{
     //SUT O UUT (Subject under testing/ Unit under testing)
     private lateinit var  remoteDataSource: RemoteDataSource
+
     private lateinit var api: DragonBallAPI
+
     //Dependencias
 
     @Before
@@ -31,6 +33,7 @@ class RemoteDataSourceTest{
             .addLast(KotlinJsonAdapterFactory())
             .build()
         api = Retrofit.Builder().client(okHttpClient).addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(mockWebServer.url("/")).build().create(DragonBallAPI::class.java)
+
     }
 
     @Test
@@ -42,4 +45,25 @@ class RemoteDataSourceTest{
         //then
         Assert.assertEquals(true, heroList.isNotEmpty())
     }
+
+    @Test
+    fun `WHEN getHero THEN success hero Maestro Roshi`() = runTest{
+        //Given
+        remoteDataSource = RemoteDataSource(api)
+        //When
+        val hero = remoteDataSource.getHero("Maestro Roshi", "")
+        //then
+        Assert.assertEquals("Maestro Roshi", hero.name)
+    }
+
+    @Test
+    fun `WHEN getLocationsHero THEN success locations list`() = runTest{
+        //Given
+        remoteDataSource = RemoteDataSource(api)
+        //When
+        val heroLocations = remoteDataSource.getLocationsHero("", "")
+        //then
+        Assert.assertEquals(true, heroLocations.isNotEmpty())
+    }
+
 }

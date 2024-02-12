@@ -32,6 +32,20 @@ class LocalDataSourceTest {
         Assert.assertTrue(heroList.isNotEmpty())
     }
 
+    @Test
+    fun `WHEN getHero THEN success hero local`(){
+        every { dao.getHero("Pepito") } returns HeroLocal("123", "Pepito Perez", "Es un señor distinguido", "-", true)
+        val heroLocal = localDataSource.getHero("Pepito")
+        Assert.assertEquals("Pepito Perez", heroLocal.name)
+    }
+
+    @Test
+    fun `WHEN getFavorite THEN success boolean, true`(){
+        every { dao.getFavorite("123") } returns true
+        val fav = localDataSource.getFavorite("123")
+        Assert.assertEquals(true, fav)
+    }
+
     @After
     fun tearDown(){
 

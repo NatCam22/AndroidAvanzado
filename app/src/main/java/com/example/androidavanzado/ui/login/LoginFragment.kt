@@ -1,31 +1,41 @@
 package com.example.androidavanzado.ui.login
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.androidavanzado.data.Repository
-import com.example.androidavanzado.databinding.ActivityLoginBinding
-import com.example.androidavanzado.ui.heroList.HeroListActivity
+import androidx.navigation.fragment.findNavController
+import com.example.androidavanzado.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginActivity: AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class LoginFragment: Fragment() {
+    private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setListeners()
-        setObservers()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListeners()
+        setObservers()
+
+    }
     fun setListeners(){
         binding.loginButton.setOnClickListener {
             viewModel.launchLogin(binding.etEmail.text.toString(), binding.etPassword.text.toString())
@@ -52,7 +62,7 @@ class LoginActivity: AppCompatActivity() {
     }
     private fun error(message: String){
         showLoading(false)
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
     private fun loading(){
         showLoading(true)
@@ -60,6 +70,7 @@ class LoginActivity: AppCompatActivity() {
 
     private fun successLogin(token: String){
         showLoading(false)
-        HeroListActivity.lanzarActivity(this, token)
+        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHeroListFragment(token))
     }
+
 }
