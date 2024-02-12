@@ -79,7 +79,7 @@ class HeroDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setLoading(b: Boolean){
-        binding.loading.visibility = if(b) View.VISIBLE else View.INVISIBLE
+        binding.loading.visibility = if(b) View.VISIBLE else View.GONE
     }
     private fun successLikeHero(fav: Boolean) {
         if(fav){
